@@ -137,6 +137,7 @@ typedef struct {
 	void	(*buffer_cd)(void *buf);
 	void	(*buffer_midi)(void *buf, uint32_t size);
 	void	(*set_midi)(int freq, int buf_size);
+	int	(*is_available)(void);
 } audioapi_t;
 
 /* Global variables residing in the platform module. */

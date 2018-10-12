@@ -418,7 +418,16 @@ openal_set_midi(int freq, int buf_size)
     midi_buf_size = buf_size;
 }
 
-const audioapi_t openal_audioapi  = {
+int openal_is_available(void)
+{
+#ifdef USE_OPENAL
+	return(openal_handle != NULL);
+#else
+	return(0);
+#endif
+}
+
+const audioapi_t openal_audioapi = {
 	"OpenAL",
 	openal_init,
 	openal_close,
@@ -426,6 +435,7 @@ const audioapi_t openal_audioapi  = {
 	openal_buffer,
 	openal_buffer_cd,
 	openal_buffer_midi,
-	openal_set_midi
+	openal_set_midi,
+	openal_is_available
 };
 
