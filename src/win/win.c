@@ -109,6 +109,11 @@ const vidapi_t *plat_vidapis[] = {
     NULL
 };
 
+const audioapi_t *plat_audioapis[] = {
+	&openal_audioapi,
+	NULL
+};
+
 
 /* Process the commandline, and create standard argc/argv array. */
 static int

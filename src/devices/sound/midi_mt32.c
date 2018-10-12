@@ -190,7 +190,7 @@ mt32_thread(void *param)
 		buf_pos += bsize;
 		if (buf_pos >= buf_size) {
 			if (soundon)
-				openal_buffer_midi(buffer, buf_size / sizeof(float));
+				plat_audioapis[0]->buffer_midi(buffer, buf_size / sizeof(float));
 			buf_pos = 0;
 		}
 	} else {
@@ -201,7 +201,7 @@ mt32_thread(void *param)
 		buf_pos += bsize;
 		if (buf_pos >= buf_size) {
 			if (soundon)
-				openal_buffer_midi(buffer_int16, buf_size / sizeof(int16_t));
+				plat_audioapis[0]->buffer_midi(buffer_int16, buf_size / sizeof(int16_t));
 			buf_pos = 0;
 		}
 	}
@@ -268,7 +268,7 @@ mt32emu_init(wchar_t *control_rom, wchar_t *pcm_rom)
     DEBUG("mt32 reverb: %d\n", mt32emu_is_reverb_enabled(context));
     DEBUG("mt32 reversed stereo: %d\n", mt32emu_is_reversed_stereo_enabled(context)); */
 
-    openal_set_midi(samplerate, buf_size);
+    plat_audioapis[0]->set_midi(samplerate, buf_size);
 
     /* DEBUG("mt32 (Munt %s) initialized, samplerate %d, buf_size %d\n", mt32emu_get_library_version_string(), samplerate, buf_size); */
 

@@ -86,6 +86,8 @@ extern DWORD		filterindex;
 extern const vidapi_t	ddraw_vidapi;
 extern const vidapi_t	d3d_vidapi;
 
+/* Audio API initializers */
+extern const audioapi_t openal_audioapi;
 
 /* Internal platform support functions. */
 #ifdef USE_CRASHDUMP

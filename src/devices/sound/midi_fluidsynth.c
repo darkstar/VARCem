@@ -182,7 +182,7 @@ fluidsynth_thread(void *param)
 		buf_pos += buf_size;
 		if (buf_pos >= data->buf_size) {
 			if (soundon)
-				openal_buffer_midi(data->buffer, data->buf_size / sizeof(float));
+				plat_audioapis[0]->buffer_midi(data->buffer, data->buf_size / sizeof(float));
 			buf_pos = 0;
 		}
 	} else {
@@ -193,7 +193,7 @@ fluidsynth_thread(void *param)
 		buf_pos += buf_size;
 		if (buf_pos >= data->buf_size) {
 			if (soundon)
-				openal_buffer_midi(data->buffer_int16, data->buf_size / sizeof(int16_t));
+				plat_audioapis[0]->buffer_midi(data->buffer_int16, data->buf_size / sizeof(int16_t));
 			buf_pos = 0;
 		}
 	}
@@ -349,7 +349,7 @@ fluidsynth_init(const device_t *info)
     data->event = thread_create_event();
     data->thread_h = thread_create(fluidsynth_thread, data);
 
-    openal_set_midi(data->samplerate, data->buf_size);
+    plat_audioapis[0]->set_midi(data->samplerate, data->buf_size);
 
     DEBUG("fluidsynth (%s) initialized, samplerate %d, buf_size %d\n",
 	  f_fluid_version_str(), data->samplerate, data->buf_size);

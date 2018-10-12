@@ -86,14 +86,6 @@ extern void	sound_close(void);
 extern void	sound_cd_stop(void);
 extern void	sound_cd_set_volume(unsigned int vol_l, unsigned int vol_r);
 
-extern void	openal_close(void);
-extern void	openal_init(void);
-extern void	openal_reset(void);
-extern void	openal_buffer(void *buf);
-extern void	openal_buffer_cd(void *buf);
-extern void	openal_buffer_midi(void *buf, uint32_t size);
-extern void	openal_set_midi(int freq, int buf_size);
-
 #ifdef __cplusplus
 }
 #endif

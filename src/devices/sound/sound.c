@@ -207,9 +207,9 @@ cd_thread(void *param)
 	}
 
 	if (sound_is_float)
-		openal_buffer_cd(cd_out_buffer);
+		plat_audioapis[0]->buffer_cd(cd_out_buffer);
 	else
-		openal_buffer_cd(cd_out_buffer_int16);
+		plat_audioapis[0]->buffer_cd(cd_out_buffer_int16);
     }
 }
 
@@ -272,9 +272,9 @@ sound_poll(void *priv)
 
 	if (soundon) {
 		if (sound_is_float)
-			openal_buffer(outbuffer_ex);
+			plat_audioapis[0]->buffer(outbuffer_ex);
 		else
-			openal_buffer(outbuffer_ex_int16);
+			plat_audioapis[0]->buffer(outbuffer_ex_int16);
 	}
 	
 	if (cd_thread_enable) {
@@ -333,7 +333,7 @@ sound_reset(void)
     midi_device_init();
 
     /* Reset OpenAL. */
-    openal_reset();
+    plat_audioapis[0]->reset();
 
     timer_add(sound_poll, &poll_time, TIMER_ALWAYS_ENABLED, NULL);
 
@@ -363,7 +363,7 @@ sound_init(void)
     int drives, i;
 
     /* Initialize the OpenAL module. */
-    openal_init();
+	plat_audioapis[0]->init();
 
 #ifdef USE_FLUIDSYNTH
     /* Initialize the FluidSynth module. */
@@ -416,7 +416,7 @@ sound_close(void)
     midi_close();
 
     /* Close the OpenAL interface. */
-    openal_close();
+	plat_audioapis[0]->close();
 }
 
 

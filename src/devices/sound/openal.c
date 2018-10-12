@@ -234,7 +234,7 @@ openal_init(void)
     alutInit(NULL, NULL);
 
     /* Close up shop on application exit. */
-    atexit(openal_close);
+    atexit(plat_audioapis[0]->close);
 #endif
 }
 
@@ -417,3 +417,15 @@ openal_set_midi(int freq, int buf_size)
     midi_freq = freq;
     midi_buf_size = buf_size;
 }
+
+const audioapi_t openal_audioapi  = {
+	"OpenAL",
+	openal_init,
+	openal_close,
+	openal_reset,
+	openal_buffer,
+	openal_buffer_cd,
+	openal_buffer_midi,
+	openal_set_midi
+};
+

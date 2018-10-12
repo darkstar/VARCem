@@ -127,11 +127,22 @@ typedef struct {
     int		(*is_available)(void);
 } vidapi_t;
 
+/* Define an API for audio outputs */
+typedef struct {
+	const char	*name;
+	void	(*init)(void);
+	void	(*close)(void);
+	void	(*reset)(void);
+	void	(*buffer)(void *buf);
+	void	(*buffer_cd)(void *buf);
+	void	(*buffer_midi)(void *buf, uint32_t size);
+	void	(*set_midi)(int freq, int buf_size);
+} audioapi_t;
 
 /* Global variables residing in the platform module. */
 extern int	quited;				/* system exit requested */
 extern const vidapi_t *plat_vidapis[];
-
+extern const audioapi_t *plat_audioapis[];
 
 /* System-related functions. */
 #ifdef _WIN32
